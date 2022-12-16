@@ -33,6 +33,7 @@ function handleSubmit(event) {
   updateCounter();
   updateCartPreview();
 
+
 }
 
 // TODO: Add the selected item and quantity to the cart
@@ -46,9 +47,16 @@ function addSelectedItemToCart() {
   // TODO: using those, add one item to the Cart
   state.cart.addItem(item, quantity);
 }
-
+let calculateQuantity = 0;
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() { }
+function updateCounter() {
+  let retrievedCart = localStorage.getItem('myCart');
+  let parsedCart = JSON.parse(retrievedCart);
+  calculateQuantity = parsedCart.length;
+  let  itemCount = document.getElementById('itemCount');
+  itemCount.textContent = calculateQuantity;
+
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
